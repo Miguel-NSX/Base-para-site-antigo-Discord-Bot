@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Jully</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">Jully</a>
+        <div style="display: flex; align-items: center;">
+            <% if (user) { %>
+                <a href="/dashboard" class="user-profile-nav"> <img src="<%= user.avatar %>" alt="Avatar" class="user-avatar">
+            <span><%= user.username %></span>
+                </a>
+            <% } else { %>
+                <a href="/auth/discord" class="login-button">Login com Discord</a>
+            <% } %>
+            <button class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <ul class="nav-items">
+        <li><a href="/">Início</a></li>
+        <li><a href="/sobre">Sobre</a></li>
+        <li><a href="/contato">Contato</a></li>
+    </ul>
+
+    <div class="dashboard-container">
+        <div class="user-profile">
+            <img src="<%= user.avatar %>" alt="Avatar" class="avatar">
+            <h2>Bem-vindo, <%= user.username %>!</h2>
+        </div>
+        
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>Seus Dados</h3>
+                <p>Email: <%= user.email %></p>
+                <p>ID: <%= user.id %></p>
+            </div>
+            <div class="card">
+                <h3>Ações Rápidas</h3>
+                <button class="action-btn">Gerenciar Perfil</button>
+                <button class="action-btn">Configurações</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.nav-items').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
